@@ -14,7 +14,24 @@
 @layer base {
   .grid-background {
     background-color: #FDFBF7;
-    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='16' height='16' fill='transparent' stroke='%23BE8D73' stroke-width='0.06' stroke-opacity='0.3'/%3E%3C/svg%3E");
-    background-size: 3rem;
+
+    background-image:
+      url("data:image/svg+xml,%3Csvg width='247' height='276' viewBox='0 0 247 276' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M123 255 C90 170 45 120 20 92 C60 118 102 150 123 185 C144 150 186 118 226 92 C201 120 156 170 123 255Z' stroke='%23CFCBC5' stroke-width='1' fill='none'/%3E%3Cpath d='M123 185 C95 145 88 115 92 78 C100 40 118 28 123 22 C128 28 146 40 154 78 C158 115 151 145 123 185Z' stroke='%23CFCBC5' stroke-width='1' fill='none'/%3E%3Cpath d='M123 145 C105 120 100 98 103 78 C108 55 118 45 123 40 C128 45 138 55 143 78 C146 98 141 120 123 145Z' stroke='%23CFCBC5' stroke-width='1' fill='none'/%3E%3C/svg%3E"),
+
+      url("data:image/svg+xml,%3Csvg width='247' height='276' viewBox='0 0 247 276' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M123 255 C90 170 45 120 20 92 C60 118 102 150 123 185 C144 150 186 118 226 92 C201 120 156 170 123 255Z' stroke='%23CFCBC5' stroke-width='1' fill='none'/%3E%3Cpath d='M123 185 C95 145 88 115 92 78 C100 40 118 28 123 22 C128 28 146 40 154 78 C158 115 151 145 123 185Z' stroke='%23CFCBC5' stroke-width='1' fill='none'/%3E%3Cpath d='M123 145 C105 120 100 98 103 78 C108 55 118 45 123 40 C128 45 138 55 143 78 C146 98 141 120 123 145Z' stroke='%23CFCBC5' stroke-width='1' fill='none'/%3E%3C/svg%3E"),
+
+      url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='16' height='16' fill='transparent' stroke='%23BE8D73' stroke-width='0.06' stroke-opacity='0.3'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat, no-repeat, repeat;
+
+    background-position:
+      right 5rem bottom 3rem,
+      left 8rem top 8rem,
+      top left;
+
+    background-size:
+      247px 276px,
+      121px 219px,
+      3rem;
   }
 }
