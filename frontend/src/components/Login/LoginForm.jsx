@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../shared/Button";
 import NestlyLogo from "../NestlyLogo"
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
 
@@ -68,7 +69,7 @@ const LoginForm = () => {
       }
       <p className="w-full text-right pb-6 hover:cursor-pointer tracking-wide hover:underline text-sm pt-3 font-semibold">Forgot your Password?</p>
       <Button size = "large">Continue to Workspace</Button>
-      <p className="text-center pt-4">Don't have an account? <span className="font-semibold hover:underline">Sign up here</span></p>
+      <p className="text-center pt-4">Don't have an account? <span className="font-semibold hover:underline"><Link to="/signup">Sign up here</Link></span></p>
       <div className="mt-4 text-center text-sm tracking-wide hover:underline">Back to Home</div>
     </form>
    );
