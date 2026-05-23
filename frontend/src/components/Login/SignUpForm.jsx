@@ -89,7 +89,7 @@ const SignUpForm = () => {
       <p className="w-full text-right pb-6 hover:cursor-pointer tracking-wide hover:underline text-sm pt-3 font-semibold">Forgot your Password?</p>
       <Button size = "large">Create Account</Button>
       <p className="text-center pt-4">Already have an account? <span className="font-semibold hover:underline"><Link to="/login">Log in</Link></span></p>
-      <div className="mt-4 text-center text-sm tracking-wide hover:underline">Back to Home</div>
+      <div className="mt-4 text-center text-sm tracking-wide hover:underline"><link to="/welcome">Back to Home</link></div>
     </form>
    );
 }
