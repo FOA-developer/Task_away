@@ -2,7 +2,9 @@ import NestlyLogo from "../NestlyLogo.jsx";
 import Button from "../shared/Button.jsx";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
-import {useState} from "react"
+import {useState} from "react";
+import { Link } from "react-router-dom";
+
  const links = [
         { name:"Home",
           link: "#Home",
@@ -35,7 +37,7 @@ const Navbar = () => {
             return <li className="font-semibold " key={link.name}><a href={link.link}>{link.name}</a></li>
           })}
         </ul>
-        <Button className="align-top" size="small">Get Started</Button>
+        <Button className="align-top" size="small"><Link to="/login">Get Started</Link></Button>
       </div>
       <button className="flex md:hidden" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <GiHamburgerMenu/> : <MdClose/>}
