@@ -42,7 +42,7 @@ const Navbar = () => {
       <button className="flex md:hidden" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <GiHamburgerMenu/> : <MdClose/>}
       </button>
-      {!isOpen && (
+      {isOpen && (
           <div className="absolute top-14 right-0 w-full rounded-lg flex flex-col items-center gap-6 py-8 z-50">
             {links.map((link) => {
               return <a href={link.link} key={link.name} onClick={() => setIsOpen(false)} className="text-white hover:text-[#FE4E02] transition duration-300">{link.name}</a>
