@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../shared/Button";
 import NestlyLogo from "../NestlyLogo";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -50,7 +51,17 @@ const SignUpForm = () => {
 
   const [focused, setFocused] = useState(null);
 
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const post = await axios.post('', {email: formData.email, password: formData.password});
+      const handleResponse = post.data;
+      console.log(handleResponse);
+    }
+    catch(err){
+      console.log("signup failed", err.message);
+    }
+  }
 
   return ( 
     <form className="bg-mellow flex flex-col rounded-xl p-8 text-primary my-20 max-w-xl min-w-lg">
