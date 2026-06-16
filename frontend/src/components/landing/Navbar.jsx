@@ -1,4 +1,4 @@
-import NestlyLogo from "../NestlyLogo.jsx";
+import NestlyLogo from "../shared/NestlyLogo.jsx";
 import Button from "../shared/Button.jsx";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
