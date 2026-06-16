@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Button from "../shared/Button";
-import NestlyLogo from "../NestlyLogo"
-import { Link } from "react-router-dom";
+import Button from "../shared/Button.jsx";
+import NestlyLogo from "../shared/NestlyLogo.jsx"
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginForm = () => {
+  
+  const navigate = useNavigate();
 
   const[inputs, setInputs] = useState([
     {
@@ -36,9 +38,12 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const post = await axios.post('', {email: formData.email, password: formData.password});
+      const post = await axios.post('http://localhost:3000/api/auth/login', {email: formData.email, password: formData.password});
       const handleResponse = post.data;
+      const token = handleResponse.token;
+      localStorage.setItem("token", token);
       console.log(handleResponse);
+      navigate("/dashboard")
     }
     catch(err){
       console.log("login failed", err.message);
@@ -47,7 +52,7 @@ const LoginForm = () => {
 
   return ( 
     <div className="bg-mellow flex flex-col rounded-xl p-8 text-primary max-w-xl min-w-lg">
-      <form className="flex flex-col" onSubmit={handleSubmit()}>
+      <form className="flex flex-col" onSubmit={handleSubmit}>
         <div className="flex items-center gap-1 justify-center pt-5">
           <NestlyLogo/>
           <h3 className="text-center text-2xl">Nestly</h3>
