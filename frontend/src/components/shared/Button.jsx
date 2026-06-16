@@ -1,6 +1,6 @@
 const Button = ({ size = "small", className, children}) => {
 
-  const baseStyle = "rounded-full text-white bg-primary m-auto";
+  const baseStyle = "rounded-full text-white bg-primary m-auto hover:pointer";
   
   const sizes ={
     small: "text-sm font-semibold py-3 w-[150px]",
