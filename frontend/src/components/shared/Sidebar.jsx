@@ -1,45 +1,73 @@
-import { LayoutDashboardIcon, Calendar1Icon, ClipboardCheckIcon, Users2Icon,  SettingsIcon } from "lucide-react";
-import NestlyLogo from "../NestlyLogo.jsx";
+import { useState } from "react";
+import { LayoutDashboardIcon, Calendar1Icon, ClipboardCheckIcon, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
+import NestlyLogo from "./NestlyLogo.jsx";
+import {link} from "react-router-dom";
 
-const links =[
-  {
-    name: "Dashboard",
-    icon: LayoutDashboardIcon
-  },
-  {
-    name: "Calendar",
-    icon: Calendar1Icon
-  },
-  {
-    name: "Tasks",
-    icon: ClipboardCheckIcon
-  },
-  {
-    name: "Teams",
-    icon: Users2Icon
-  },
-  {
-    name: "Settings",
-    icon: SettingsIcon
-  }
-]
+const links = [
+  { name: "Dashboard", icon: LayoutDashboardIcon },
+  { name: "Calendar", icon: Calendar1Icon },
+  { name: "Tasks", icon: ClipboardCheckIcon },
+  { name: "Teams", icon: Users2Icon },
+  { name: "Settings", icon: SettingsIcon },
+];
 
-const Sidebar = ({className}) => {
-  return ( 
-    <div className={`${className}`}>
-      <div className="flex flex-col">
-        <div className="flex flex-row gap-2">
-          <NestlyLogo/>
-          <h2 className="">Nestly</h2>
+const Sidebar = ({ className }) => {
+  const [active, setActive] = useState("Dashboard");
+
+  return (
+    <div className={`${className} bg-white flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r-1`}>
+      {/* Logo */}
+      <div className="flex flex-row items-center gap-2 px-2 mb-5">
+        <NestlyLogo />
+        <h2 className="text-3xl text-primary">Nestly</h2>
+      </div>
+
+      <hr className="border-grey mb-5" />
+
+      {/* Workspace dropdown */}
+      <button className="flex flex-row items-center justify-between text-primary px-4 py-2.5 mb-6 font-medium border-grey border-b-1 w-full">
+        <span>Personal Workspace</span>
+        <ChevronDownIcon size={22} className="text-grey" />
+      </button>
+
+      {/* Nav links */}
+      <nav className="flex flex-col gap-1 flex-1">
+        {links.map((link) => {
+          const Icon = link.icon;
+          const isActive = active === link.name;
+          return (
+            <button
+              key={link.name}
+              onClick={() => setActive(link.name)}
+              className={`flex flex-row items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors w-full text-left
+                ${isActive
+                  ? "bg-primary text-white"
+                  : "text-primary hover:bg-grey/30"
+                }`}
+            >
+              <Icon size={24} />
+              {link.name}
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* User profile */}
+      <hr className="border-grey mb-4" />
+      <div className="flex flex-row items-center gap-3 px-2">
+        <div className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2C2523" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
         </div>
-        <nav className="flex flex-col">
-          {links.map((link) => {
-            return <button className="" key={link.name}>{link.name}</button>
-          })}
-        </nav>
+        <div>
+          <p className="font-semibold text-primary leading-tight">John Doe</p>
+          <p className="text-xs text-text-secondary">Admin</p>
+        </div>
       </div>
     </div>
-   );
-}
- 
+  );
+};
+
 export default Sidebar;
