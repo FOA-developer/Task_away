@@ -1,23 +1,26 @@
 import { useState } from "react";
-import Button from "../shared/Button";
-import NestlyLogo from "../NestlyLogo";
-import { Link } from "react-router-dom";
+import Button from "../shared/Button.jsx";
+import NestlyLogo from "../shared/NestlyLogo.jsx";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 
 
 
 const SignUpForm = () => {
 
+  const navigate = useNavigate();
+
   const[formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
-  })
+  });
 
 
   const[inputs, setInput] = useState([
     {
-      id:"Full Name",
+      id:"FullName",
       name: "Full Name",
       type: "text",
       class: "top-[270px]"
@@ -54,9 +57,10 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const post = await axios.post('', {email: formData.email, password: formData.password});
+      const post = await axios.post('http://localhost:3000/api/auth/register', {email: formData.email, password: formData.password, name: formData.FullName, confirmPassword: formData.confirmPassword});
       const handleResponse = post.data;
       console.log(handleResponse);
+      navigate("/login")
     }
     catch(err){
       console.log("signup failed", err.message);
