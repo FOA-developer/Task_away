@@ -2,6 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LoginPage from "./pages/public/LoginPage"
 import SignUpPage from "./pages/public/SignUpPage"
 import LandingPage from './pages/public/LandingPage'
+import Calendar from './pages/private/Calendar'
+import Dashboard from './pages/private/Dashboard'
+import Tasks from './pages/private/Tasks'
+import Teams from './pages/private/Teams'
+import ProtectedRoute from './components/shared/ProtectedRoute'
+
 
 
 function App() {
@@ -13,6 +19,10 @@ function App() {
           <Route path="/" element={<LandingPage/>} />
           <Route path="/login" element={<LoginPage/>} /> 
           <Route path="/signup" element={<SignUpPage/>} /> 
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
+          <Route path="/calendar" element={<ProtectedRoute><Calendar/></ProtectedRoute>} />
+          <Route path="/tasks" element={<ProtectedRoute><Tasks/></ProtectedRoute>} />
+          <Route path="/teams" element={<ProtectedRoute><Teams/></ProtectedRoute>} />
           <Route path="*" element={<h1>404 - Not Found</h1>} />
         </Routes>
       </BrowserRouter>
