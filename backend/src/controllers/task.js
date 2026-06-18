@@ -1,4 +1,5 @@
-import { Task } from "../models/task.js"
+import { Task } from "../models/task.js";
+import { Workspace } from "../models/workspace.js";
 
 const createTask = async (req, res) => {
   try{
@@ -10,6 +11,12 @@ const createTask = async (req, res) => {
       }
 
       const owner = req.user;
+      const verifyWorkspace = await Workspace.findById(workspace);
+      if(!verifyWorkspace){
+        return res.status(404).json({
+          message: "Workspace not found"
+        })
+      }
 
       const task = await Task.create({
         title,
@@ -17,10 +24,16 @@ const createTask = async (req, res) => {
         dueDate,
         status,
         assignedTo,
-        owner
+        owner,
+        workspace: workspace
       })
        return res.status(201).json({
-        message: "Task created successfully"
+        message: "Task created successfully",
+        task: task._id,
+        title: task.title,
+        description: task.description,
+        status: task.status,
+        workspace: task.workspace
        })
 
   } catch(err){
@@ -29,4 +42,8 @@ const createTask = async (req, res) => {
     })
   }
 
+}
+
+export {
+  createTask
 }
