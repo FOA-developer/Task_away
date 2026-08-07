@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
       {/* Right column: mobile header + main + mobile bottom nav */}
       <div className="flex flex-col flex-1 min-h-0">
         {/* Mobile header */}
-        <header className="flex md:hidden items-center justify-between bg-mellow px-5 py-4 border-b border-grey">
+        <header className="flex md:hidden items-center justify-between bg-white px-5 py-4 border-b border-grey">
           <div className="flex items-center gap-2">
             <NestlyLogo />
             <span className="font-bold text-xl text-primary">Nestly</span>
@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
         </main>
 
         {/* Mobile bottom nav */}
-        <nav className="flex md:hidden items-center justify-around bg-mellow border-t border-grey px-2 py-3">
+        <nav className="flex md:hidden items-center justify-around bg-whiter border-t border-grey px-2 py-3">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = active === link.name;

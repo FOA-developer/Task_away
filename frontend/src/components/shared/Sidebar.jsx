@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LayoutDashboardIcon, Calendar1Icon, ClipboardCheckIcon, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
 import NestlyLogo from "./NestlyLogo.jsx";
-import {link} from "react-router-dom";
+
 
 const links = [
   { name: "Dashboard", icon: LayoutDashboardIcon },
@@ -15,7 +15,7 @@ const Sidebar = ({ className }) => {
   const [active, setActive] = useState("Dashboard");
 
   return (
-    <div className={`${className} bg-white flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r-1`}>
+    <div className={`${className} bg-whiter flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r-1`}>
       {/* Logo */}
       <div className="flex flex-row items-center gap-2 px-2 mb-5">
         <NestlyLogo />
