@@ -3,18 +3,28 @@ import { Workspace } from "../models/workspace.js";
 
 const createTask = async (req, res) => {
   try{
-    const{title, description, status, dueDate, workspace, assignedTo} = req.body;
-      if(!title || !description || !status || !dueDate){
+    const{title, description, status, dueDate} = req.body;
+      if(!title || !description || !status || !dueDate ){
         return res.status(400).json({
           message: "All field are required"
         })
       }
 
-      const owner = req.user;
+
+      const owner = req.user._id;
+      const assignedTo = req.body.assignedTo || owner
+      const workspace = req.user.currentWorkspace
       const verifyWorkspace = await Workspace.findById(workspace);
       if(!verifyWorkspace){
         return res.status(404).json({
           message: "Workspace not found"
+        })
+      }
+
+      const validateMember = verifyWorkspace.members.includes(assignedTo);
+      if(!validateMember){
+        return res.status(400).json({
+          message: "Use a valid member"
         })
       }
 
@@ -25,7 +35,7 @@ const createTask = async (req, res) => {
         status,
         assignedTo,
         owner,
-        workspace: workspace
+        workspace
       })
        return res.status(201).json({
         message: "Task created successfully",
@@ -44,6 +54,23 @@ const createTask = async (req, res) => {
 
 }
 
+const getTask = async (req, res) => {
+  try{
+    const tasks = await Task.find({workspace : req.user.currentWorkspace})
+    return res.status(200).json({
+      message: "Tasks gotten successfully",
+      task : tasks
+    })
+  } 
+  catch(err){
+    return res.status(500).json({
+      message: `Internal serer errror ${err}`
+    })
+  }
+  
+}
+
 export {
-  createTask
+  createTask,
+  getTask
 }
