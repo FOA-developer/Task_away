@@ -9,7 +9,7 @@ const createWorkspace = async (req, res) => {
         message: "You need to put the required information"
       })
     }
-    const owner = req.user;
+    const owner = req.user._id;
       const workspace = await Workspace.create({
         name,
          owner,
@@ -48,7 +48,9 @@ const switchWorkspace = async (req, res) => {
     }
 
     const changeWorkspace = await User.findByIdAndUpdate( req.user._id, { currentWorkspace: newWorkspace }, {new : true});
-    return res.status(200).json({message: "workspace switched successfully"
+    return res.status(200).json({
+      message: "workspace switched successfully",
+      currentWorkspace: changeWorkspace.currentWorkspace
     })
 
   }catch(err){
