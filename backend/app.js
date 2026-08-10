@@ -11,6 +11,7 @@ app.use(express.json())
 app.use("/api/auth", authRouter )
 app.use("/api/workspace", Workspacerouter)
 app.use("/api/task", taskRouter)
+app.get("/ping", (req, res) => res.json({ ok: true }));
 
 
 export default app;
