@@ -11,7 +11,6 @@ const userSchema = new Schema({
   password: {
     type:String,
     required: true,
-    maxlength:25,
     minlength: 8,
   },
   email:{
@@ -26,18 +25,21 @@ const userSchema = new Schema({
     },
     lowercase:true,
     trim:true
-  }
+  },
+  currentWorkspace : {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Workspace"
+  },
+
 },
 {
   timestamps: true
 }
 )
 
-userSchema.pre("save", async function(next){
-  if(!this.isModified("password")) return next;
+userSchema.pre("save", async function(){
+  if(!this.isModified("password"))
   this.password = await bcrypt.hash(this.password, 10);
-
-  next;
 })
 
 userSchema.methods.comparePasswords = async function (password) {
