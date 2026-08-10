@@ -1,4 +1,5 @@
 import { User } from "../models/user.js";
+import { Workspace } from "../models/workspace.js";
 import jwt from "jsonwebtoken"
 
 const registerUser = async (req , res) => {
@@ -10,6 +11,11 @@ const registerUser = async (req , res) => {
       })
     }
 
+    if (password.length > 40){
+      return res.status(400).json({
+        message: "Password must not exceed 40 characters"
+      })
+    }
     if(password !== confirmPassword){
       return res.status(400).json({
         message: "Passwords do not match"
@@ -28,11 +34,22 @@ const registerUser = async (req , res) => {
       email: email.toLowerCase(),
       password,
     })
+
+    const workspace = await Workspace.create({
+      name: `${user.name}'s workspace`,
+      owner: user._id,
+      members: [user._id]
+    })
+
+    user.currentWorkspace = workspace._id;
+    await user.save();
+
     return res.status(201).json({
       message: "User created successfully",
       id: user._id,
       name : user.name,
-      email: user.email
+      email: user.email,
+      currentWorkspace: workspace._id
     })
   }
   catch(err){
