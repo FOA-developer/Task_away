@@ -12,10 +12,11 @@ const workspaceSchema = new Schema({
     ref: "User",
     required: true
   },
-  members: [{
+  members: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "User",
-  }],
+    index : true
+  },
 },
 {
   timestamps: true
