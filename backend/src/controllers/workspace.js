@@ -75,10 +75,45 @@ const getWorkspace = async (req, res) => {
   }
 }
 
+const addMember = async(req, res) => {
+  try{
+    const { userEmail } = req.body
+    if (!userEmail){
+      return res.status(400).json({
+        message: "Use a valid email"
+      })
+    }
+    const workspace = await Workspace.findById( req.user.currentWorkspace )
+    const member = await User.findOne({ email : userEmail})
+    if(!member){
+      return res.status(403).json({
+        message : "Must  be a register user"
+      })
+    }
+    const alreadyAMember = workspace.members.includes(member._id)
+    if(alreadyAMember){
+      return res.status(403).json({
+        message : "User is already in the workspace"
+      })
+    }
 
+    const added = await Workspace.findByIdAndUpdate( workspace._id, { $push: { members: member._id } }, { new: true })
+    return res.status(200).json({
+      message: "Member added successfully",
+      members : added.members
+    })
+  }
+  catch(err){
+    return res.status(500).json({
+      message: `Internal server error ${err}`
+    })
+  }
+  
+}
 
 export {
   createWorkspace,
   switchWorkspace,
-  getWorkspace
+  getWorkspace,
+  addMember
 }
