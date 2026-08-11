@@ -56,7 +56,7 @@ const createTask = async (req, res) => {
 
 const getTask = async (req, res) => {
   try{
-    const tasks = await Task.find({workspace : req.user.currentWorkspace})
+    const tasks = await Task.find({workspace : req.user.currentWorkspace}).populate("assignedTo")
     return res.status(200).json({
       message: "Tasks gotten successfully",
       task : tasks
