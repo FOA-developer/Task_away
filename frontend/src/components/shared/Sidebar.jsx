@@ -1,18 +1,21 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom"
 import { LayoutDashboardIcon, Calendar1Icon, ClipboardCheckIcon, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
 import NestlyLogo from "./NestlyLogo.jsx";
 
 
 const links = [
-  { name: "Dashboard", icon: LayoutDashboardIcon },
-  { name: "Calendar", icon: Calendar1Icon },
-  { name: "Tasks", icon: ClipboardCheckIcon },
-  { name: "Teams", icon: Users2Icon },
-  { name: "Settings", icon: SettingsIcon },
+  { name: "Dashboard", icon: LayoutDashboardIcon, path: "/dashboard" },
+  { name: "Calendar", icon: Calendar1Icon, path: "/calendar" },
+  { name: "Tasks", icon: ClipboardCheckIcon, path: "/tasks" },
+  { name: "Teams", icon: Users2Icon, path: "/teams"},
+  { name: "Settings", icon: SettingsIcon, path: "/settings" },
 ];
 
 const Sidebar = ({ className }) => {
-  const [active, setActive] = useState("Dashboard");
+  const [active, setActive] = useState("/dashboard");
+  const navigate = useNavigate()
+  const location =  useLocation()
 
   return (
     <div className={`${className} bg-whiter flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r-1`}>
@@ -34,11 +37,11 @@ const Sidebar = ({ className }) => {
       <nav className="flex flex-col gap-1 flex-1">
         {links.map((link) => {
           const Icon = link.icon;
-          const isActive = active === link.name;
+          const isActive = location.pathname === link.path;
           return (
             <button
               key={link.name}
-              onClick={() => setActive(link.name)}
+              onClick={() => navigate(link.path)}
               className={`flex flex-row items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors w-full text-left
                 ${isActive
                   ? "bg-primary text-white"

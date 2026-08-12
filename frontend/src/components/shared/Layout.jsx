@@ -8,18 +8,21 @@ import {
   SettingsIcon,
   UserCircleIcon,
 } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import NestlyLogo from "./NestlyLogo.jsx";
 
 const navLinks = [
-  { name: "Dashboard", icon: LayoutDashboardIcon },
-  { name: "Calendar", icon: Calendar1Icon },
-  { name: "Tasks", icon: ClipboardCheckIcon },
-  { name: "Teams", icon: Users2Icon },
-  { name: "Profile", icon: UserCircleIcon },
+  { name: "Dashboard", icon: LayoutDashboardIcon, path: "/dashboard"},
+  { name: "Calendar", icon: Calendar1Icon, path: "/calendar" },
+  { name: "Tasks", icon: ClipboardCheckIcon, path: "/tasks" },
+  { name: "Teams", icon: Users2Icon, path: "/teams" },
+  { name: "Profile", icon: UserCircleIcon, path: "/settings"},
 ];
 
 const Layout = ({ children }) => {
   const [active, setActive] = useState("Dashboard");
+  const navigate = useNavigate()
+  const location = useLocation()
 
   return (
     <div className="flex h-screen font-dmsans">
@@ -48,11 +51,11 @@ const Layout = ({ children }) => {
         <nav className="flex md:hidden items-center justify-around bg-whiter border-t border-grey px-2 py-3">
           {navLinks.map((link) => {
             const Icon = link.icon;
-            const isActive = active === link.name;
+            const isActive = location.pathname === link.path;
             return (
               <button
                 key={link.name}
-                onClick={() => setActive(link.name)}
+                onClick={() => navigate(link.path)}
                 className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-colors text-xs font-medium
                   ${isActive ? "text-primary font-semibold" : "text-grey"}`}
               >
