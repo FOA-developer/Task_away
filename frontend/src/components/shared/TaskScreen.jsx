@@ -72,7 +72,7 @@ const TaskScreen= ({ task, onClose }) => {
            <h4 className="uppercase text-grey text-xs ">description</h4>
          </div>
          <p className = "font-dmsans text-sm text-primary px-3 pb-8">{task.description}</p>
-         <div className="grid grid-cols-2 gap-3 justify-between items-center border-t-1 border-grey w-full pt-6">
+         <div className="grid grid-cols-2 gap-3 justify-between items-center border-t border-grey w-full pt-6">
           {
             blocks.map((block) => {
               const Icon = block.icon
