@@ -111,9 +111,25 @@ const addMember = async(req, res) => {
   
 }
 
+const getCurrentWorkspace = async (req, res) => {
+  try{
+    const currentWorkspace = await Workspace.findById(req.user.currentWorkspace).populate("members")
+     return res.status(200).json({
+      message: 'Current workspace gotten successfully',
+      workspace: currentWorkspace
+     })
+  }
+  catch(err){
+    return res.status(500).json({
+      message: `Internal server error ${err}`
+    })
+  }
+}
+
 export {
   createWorkspace,
   switchWorkspace,
   getWorkspace,
-  addMember
+  addMember,
+  getCurrentWorkspace
 }
