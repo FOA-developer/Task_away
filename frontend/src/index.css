@@ -11,6 +11,12 @@
   --color-whiter: #FDFBF7;
   --color-grey: #CFCBC5;
 
+  /* tag colours */
+  --color-pending : #EDC9BA;
+  --color-progress : #A0B8D0;
+  --color-done : #BDCCAC;
+
+  
   /* text-colours */
   --color-text-secondary: #BE8D73;
 
