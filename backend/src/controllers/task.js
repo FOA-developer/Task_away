@@ -3,8 +3,8 @@ import { Workspace } from "../models/workspace.js";
 
 const createTask = async (req, res) => {
   try{
-    const{title, description, status, dueDate} = req.body;
-      if(!title || !description || !status || !dueDate ){
+    const{title, description, dueDate} = req.body;
+      if(!title || !description || !dueDate ){
         return res.status(400).json({
           message: "All field are required"
         })
@@ -12,6 +12,7 @@ const createTask = async (req, res) => {
 
 
       const owner = req.user._id;
+      const status = "pending"
       const assignedTo = req.body.assignedTo || owner
       const workspace = req.user.currentWorkspace
       const verifyWorkspace = await Workspace.findById(workspace);
