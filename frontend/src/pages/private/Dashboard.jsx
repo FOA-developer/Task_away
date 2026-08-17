@@ -4,6 +4,9 @@ import TaskPanel from "../../components/shared/TaskScreen.jsx";
 import Card from "../../components/shared/Card.jsx";
 import Skeleton from "../../components/shared/Skeleton.jsx";
 import { useEffect, useState } from "react";
+import Button from "../../components/shared/Button.jsx";
+import { Plus } from "lucide-react";
+import TaskForm from "../../components/shared/TaskForm.jsx";
 
 
 const Dashoard = () => {
@@ -11,24 +14,46 @@ const Dashoard = () => {
   const [ tasks, setTasks ] = useState([])
   const [loading, setLoading ] = useState(true)
   const [selectedTask, setSelectedTask] = useState(null)
+  const [members, setMembers] = useState([])
+  const [isAddingTask, setIsAddingTask] = useState(false)
+  const [message, setMessage] = useState("")
+
+  const fetchTasks = async () => {
+    try{
+      const res = await api.get("/task/get_task")
+      setTasks(res.data.task)
+      console.log(res.data)
+    }
+    catch(err){
+      console.log(err)
+    }
+    finally{
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-      const fetchTasks = async () => {
+      fetchTasks();
+      const fetchMembers = async() => {
         try{
-          const res = await api.get("/task/get_task")
-          setTasks(res.data.task)
-          console.log(res.data)
+          const res = await  api.get("/workspace/get_currentWorkspace")
+          setMembers(res.data.workspace.members)
+          console.log(res.data.workspace.members)
         }
         catch(err){
           console.log(err)
         }
-        finally{
-          setLoading(false)
-        }
       }
-      fetchTasks();
+
+      fetchMembers();
     },
   [])
+
+  const handleTaskSuccess = (msg) => {
+    fetchTasks();
+    setMessage(msg)
+  }
+  
 
   
   return ( 
@@ -39,7 +64,9 @@ const Dashoard = () => {
             <h1 className="text-2xl md:font-3xl font-semibold text-primary font-playfair">Personal Workspace</h1>
             <p className="font-primary">{today.toLocaleDateString()}</p>
           </div>
-          <button></button>
+          <Button className="flex flex-row items-center gap-2" onClick={() => {
+            setIsAddingTask(true)
+          }}><Plus size={24} className="ml-5"/>New Task</Button>
         </div>
         <div>
           {/* tags go in here  */}
@@ -57,6 +84,14 @@ const Dashoard = () => {
       {selectedTask && (
         <TaskPanel task={selectedTask} onClose={() => setSelectedTask(null)} />
       )}
+      {isAddingTask && (
+      <TaskForm 
+        onClose={() => setIsAddingTask(false)} 
+        onSuccess={handleTaskSuccess} 
+        members={members} 
+      />
+    )}
+    {message && <p>{message}</p>}.
     </Layout>
    );
 }
