@@ -1,4 +1,6 @@
-const Card = ({ title, assignedTo, dueDate, status, onClick}) => {
+import { Pencil } from "lucide-react";
+
+const Card = ({ title, assignedTo, dueDate, status, onClick, onEdit}) => {
   const words = assignedTo.name.split(" ")
   const initials = words.map(word => word[0]).join("")
   const due = new Date(dueDate)
@@ -33,8 +35,14 @@ const Card = ({ title, assignedTo, dueDate, status, onClick}) => {
         <p className="md:hidden inline font-dmsans text-xs md:text-sm">{assignedTo.name.split(" ")[0]}</p>
         <p className="hidden md:inline font-dmsans text-xs md:text-sm">{assignedTo.name}</p>
       </div> 
-      <div className={`${dateColor} px-3 rounded-lg text-primary text-xs md:text-sm flex items-center justify-center`}>
-        {`${month} ${day}`}
+      <div className="flex flex-row gap-5 items-center">
+        <Pencil size={18} onClick={(e) => {
+          e.stopPropagation;
+          onEdit()
+        }} />
+        <div className={`${dateColor} px-3 py-1 rounded-lg text-primary text-xs md:text-sm flex items-center justify-center`}>
+          {`${month} ${day}`}
+        </div>
       </div>
     </div>
   </div>
