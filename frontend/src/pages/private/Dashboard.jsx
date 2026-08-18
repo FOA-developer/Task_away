@@ -1,6 +1,6 @@
 import Layout from "../../components/shared/Layout.jsx";
 import api from "../../api/api.js";
-import TaskPanel from "../../components/shared/TaskScreen.jsx";
+import TaskScreen from "../../components/shared/TaskScreen.jsx";
 import Card from "../../components/shared/Card.jsx";
 import Skeleton from "../../components/shared/Skeleton.jsx";
 import { useEffect, useState } from "react";
@@ -86,7 +86,7 @@ const Dashoard = () => {
         </div>
       </div>
       {selectedTask && (
-        <TaskPanel task={selectedTask} onClose={() => setSelectedTask(null)} />
+        <TaskScreen task={selectedTask} onClose={() => setSelectedTask(null)}  onEdit={() => {setEditingTask(selectedTask)} } />
       )}
       {isAddingTask && (
       <TaskForm 
