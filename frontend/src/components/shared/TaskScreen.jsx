@@ -1,6 +1,7 @@
-import { X, AlignLeft, Calendar, Clock  } from "lucide-react";
+import { X, AlignLeft, Calendar, Clock , Trash2 } from "lucide-react";
+import Button from "../shared/Button.jsx"
 
-const TaskScreen= ({ task, onClose }) => {
+const TaskScreen= ({ task, onClose, onEdit }) => {
   if (!task) return null;
 
   const statusColors = {
@@ -62,11 +63,14 @@ const TaskScreen= ({ task, onClose }) => {
         </div>
         <div className={`h-1 w-full ${statusColor}`}></div>
         <div className="flex flex-col p-6">
-         <h2 className="text-2xl font-playfair text-primary">{task.title}</h2>
-         <div className="flex flex-row items-center gap-3 mt-6 pb-3 border-b border-grey">
-           <div className={`${dateColor} px-2 rounded-xl md:text-sm text-xs flex items-center py-1 justify-center`}>{initials}</div>
-           <h4 className="text-xs md:text-sm  text-primary">{task.assignedTo.name}</h4>
-         </div>
+          <h2 className="text-2xl font-playfair text-primary">{task.title}</h2>
+          <div className="flex flex-row justify-between items-center border-b border-grey">
+            <div className="flex flex-row items-center gap-3 mt-6 pb-3 ">
+              <div className={`${dateColor} px-2 rounded-xl md:text-sm text-xs flex items-center py-1 justify-center`}>{initials}</div>
+              <h4 className="text-xs md:text-sm  text-primary">{task.assignedTo.name}</h4>
+            </div>
+            <Trash2 size={18} className="text-primary mt-6"/>
+          </div>
          <div className="flex flex-row py-4 gap-2 items-center">
            <AlignLeft size={18} className="text-grey/90"/>
            <h4 className="uppercase text-grey text-xs ">description</h4>
@@ -87,6 +91,10 @@ const TaskScreen= ({ task, onClose }) => {
               )
             })
           }
+         </div>
+         <div className="flex items-center justify-center py-6">
+            <Button onClick={(e) => {e.stopPropagation;
+             onEdit()}}> Edit Task</Button>
          </div>
         </div>
       </div>
