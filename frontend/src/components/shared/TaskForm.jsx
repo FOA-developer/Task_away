@@ -86,17 +86,17 @@ const TaskForm = ({task, onClose, onSuccess, members}) => {
               </select>
             </div>
             {task && (
-              <div>
-                <label>
-                  <input type="radio" name="status" value="pending" checked={formData.status === "pending"} onChange={handleChange} />
+              <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+                <label className="text-xs md:text-sm text-primary">
+                  <input type="radio" className="accent-primary" name="status" value="pending" checked={formData.status === "pending"} onChange={handleChange} />
                   Pending
                 </label>
-                <label>
-                  <input type="radio" name="status" value="inProgress" checked={formData.status === "inProgress"} onChange={handleChange} />
+                <label className="text-xs md:text-sm text-primary">
+                  <input type="radio" className="accent-primary" name="status" value="inProgress" checked={formData.status === "inProgress"} onChange={handleChange} />
                   In Progress
                 </label>
-                <label>
-                  <input type="radio" name="status" value="completed" checked={formData.status === "completed"} onChange={handleChange} />
+                <label className="text-xs md:text-sm text-primary">
+                  <input type="radio" className="accent-primary" name="status" value="completed" checked={formData.status === "completed"} onChange={handleChange} />
                   Completed
                 </label>
               </div>
