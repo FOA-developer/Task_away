@@ -11,6 +11,7 @@ import TaskForm from "../../components/shared/TaskForm.jsx";
 
 const Dashoard = () => {
   const today = new Date();
+  const [editingTask, setEditingTask] = useState(null)
   const [ tasks, setTasks ] = useState([])
   const [loading, setLoading ] = useState(true)
   const [selectedTask, setSelectedTask] = useState(null)
@@ -52,6 +53,9 @@ const Dashoard = () => {
   const handleTaskSuccess = (msg) => {
     fetchTasks();
     setMessage(msg)
+    setTimeout(() => {
+      setMessage("")
+    }, 3000)
   }
   
 
@@ -64,9 +68,9 @@ const Dashoard = () => {
             <h1 className="text-2xl md:font-3xl font-semibold text-primary font-playfair">Personal Workspace</h1>
             <p className="font-primary">{today.toLocaleDateString()}</p>
           </div>
-          <Button className="flex flex-row items-center gap-2" onClick={() => {
+          <Button className="flex flex-row items-center gap-2" size="small" onClick={() => {
             setIsAddingTask(true)
-          }}><Plus size={24} className="ml-5"/>New Task</Button>
+          }}><Plus size={16} className="ml-5"/>New Task</Button>
         </div>
         <div>
           {/* tags go in here  */}
@@ -76,7 +80,7 @@ const Dashoard = () => {
                         <Skeleton key={num} />
                       ))) : tasks.length === 0 ? (<p>No tasks found</p>) : (
                       tasks.map((task) => (
-                        <Card key={task._id} onClick={() => setSelectedTask(task)} title={task.title} assignedTo={task.assignedTo} dueDate={task.dueDate} status={task.status}></Card>
+                        <Card key={task._id} onClick={() => setSelectedTask(task)} title={task.title} assignedTo={task.assignedTo} dueDate={task.dueDate} status={task.status} onEdit={() => {setEditingTask(task)} }></Card>
                       ))
           )}
         </div>
@@ -91,7 +95,15 @@ const Dashoard = () => {
         members={members} 
       />
     )}
-    {message && <p>{message}</p>}.
+    {editingTask && (
+      <TaskForm 
+        task={editingTask}
+        onClose={() => setEditingTask(null)} 
+        onSuccess={handleTaskSuccess} 
+        members={members} 
+      />
+    )}
+    {message && <p>{message}</p>}
     </Layout>
    );
 }
