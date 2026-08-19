@@ -18,6 +18,7 @@ const Dashoard = () => {
   const [members, setMembers] = useState([])
   const [isAddingTask, setIsAddingTask] = useState(false)
   const [message, setMessage] = useState("")
+  const [deleteTaskId, setDeleteTaskId] = useState(null)
 
   const fetchTasks = async () => {
     try{
@@ -57,6 +58,17 @@ const Dashoard = () => {
       setMessage("")
     }, 3000)
   }
+
+  const handleDelete = async (task) => {
+    try{
+      await api.delete(`/task/delete_task/${task._id}`) 
+      const updatedTask = tasks.filter((t) => t._id !==  task._id)
+      setTasks(updatedTask)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
   
 
   
@@ -80,13 +92,14 @@ const Dashoard = () => {
                         <Skeleton key={num} />
                       ))) : tasks.length === 0 ? (<p>No tasks found</p>) : (
                       tasks.map((task) => (
-                        <Card key={task._id} onClick={() => setSelectedTask(task)} title={task.title} assignedTo={task.assignedTo} dueDate={task.dueDate} status={task.status} onEdit={() => {setEditingTask(task)} }></Card>
+                        <Card key={task._id} onClick={() => setSelectedTask(task)} title={task.title} assignedTo={task.assignedTo} dueDate={task.dueDate} status={task.status} onEdit={() => {setEditingTask(task)} } onDelete={() => {handleDelete(task)}}></Card>
                       ))
           )}
         </div>
       </div>
       {selectedTask && (
-        <TaskScreen task={selectedTask} onClose={() => setSelectedTask(null)}  onEdit={() => {setEditingTask(selectedTask)} } />
+        <TaskScreen task={selectedTask} onClose={() => setSelectedTask(null)}  onEdit={() => {setEditingTask(selectedTask)} } 
+        onDelete={() => {handleDelete(selectedTask)}}/>
       )}
       {isAddingTask && (
       <TaskForm 
