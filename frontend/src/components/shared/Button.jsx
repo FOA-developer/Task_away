@@ -1,6 +1,6 @@
-const Button = ({ size = "small", className, children}) => {
+const Button = ({ size = "small", className, children, onClick}) => {
 
-  const baseStyle = "rounded-full text-white bg-primary m-auto hover:pointer";
+  const baseStyle = "rounded-full text-white bg-primary hover:pointer";
   
   const sizes ={
     small: "text-sm font-semibold py-3 w-[150px]",
@@ -9,7 +9,7 @@ const Button = ({ size = "small", className, children}) => {
   }
 
   return ( 
-    <button className={`${baseStyle} ${sizes[size]} ${className}`}>{children}</button>
+    <button className={`${baseStyle} ${sizes[size]} ${className} `} onClick={onClick} >{children}</button>
    );
 }
  
