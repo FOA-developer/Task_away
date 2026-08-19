@@ -1,6 +1,6 @@
-import { Pencil } from "lucide-react";
+import { Pencil, Trash2} from "lucide-react";
 
-const Card = ({ title, assignedTo, dueDate, status, onClick, onEdit}) => {
+const Card = ({ title, assignedTo, dueDate, status, onClick, onEdit, onDelete}) => {
   const words = assignedTo.name.split(" ")
   const initials = words.map(word => word[0]).join("")
   const due = new Date(dueDate)
@@ -36,10 +36,16 @@ const Card = ({ title, assignedTo, dueDate, status, onClick, onEdit}) => {
         <p className="hidden md:inline font-dmsans text-xs md:text-sm">{assignedTo.name}</p>
       </div> 
       <div className="flex flex-row gap-5 items-center">
-        <Pencil size={18} onClick={(e) => {
-          e.stopPropagation;
-          onEdit()
-        }} />
+        <div className="flex flex-row items-center gap-3">
+          <Pencil size={18} onClick={(e) => {
+            e.stopPropagation;
+            onEdit()
+          }} />
+          <Trash2 size={18} onClick={(e) => {
+            e.stopPropagation;
+            onDelete()
+           }} />
+        </div>
         <div className={`${dateColor} px-3 py-1 rounded-lg text-primary text-xs md:text-sm flex items-center justify-center`}>
           {`${month} ${day}`}
         </div>
