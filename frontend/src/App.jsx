@@ -3,6 +3,7 @@ import LoginPage from "./pages/public/LoginPage"
 import SignUpPage from "./pages/public/SignUpPage"
 import LandingPage from './pages/public/LandingPage'
 import Calendar from './pages/private/Calendar'
+import Settings from './pages/private/Settings'
 import Dashboard from './pages/private/Dashboard'
 import Tasks from './pages/private/Tasks'
 import Teams from './pages/private/Teams'
@@ -23,6 +24,7 @@ function App() {
           <Route path="/calendar" element={<ProtectedRoute><Calendar/></ProtectedRoute>} />
           <Route path="/tasks" element={<ProtectedRoute><Tasks/></ProtectedRoute>} />
           <Route path="/teams" element={<ProtectedRoute><Teams/></ProtectedRoute>} />
+          <Route path="/settings" element={<ProtectedRoute><Settings/></ProtectedRoute>} />
           <Route path="*" element={<h1>404 - Not Found</h1>} />
         </Routes>
       </BrowserRouter>
