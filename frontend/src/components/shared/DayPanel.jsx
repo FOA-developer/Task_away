@@ -9,7 +9,7 @@ const DayPanel = ({children, onClose}) => {
       <div 
         onClick={(e) => e.stopPropagation()}
         className="bg-white flex flex-col w-11/12 max-w-md rounded-2xl md:w-96 md:h-screen md:rounded-none md:max-w-none">
-        <div className="flex flex-col py-10 px-10">
+        <div className="flex flex-col py-4 px-2">
           <div>
             <button onClick={onClose} className="self-end text-primary"><X size={26} /></button>
           </div>
