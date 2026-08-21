@@ -17,7 +17,7 @@ const Sidebar = ({ className }) => {
   const location =  useLocation()
 
   return (
-    <div className={`${className} bg-whiter flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r-1`}>
+    <div className={`${className} bg-whiter flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r`}>
       {/* Logo */}
       <div className="flex flex-row items-center gap-2 px-2 mb-5">
         <NestlyLogo />
@@ -27,7 +27,7 @@ const Sidebar = ({ className }) => {
       <hr className="border-grey mb-5" />
 
       {/* Workspace dropdown */}
-      <button className="flex flex-row items-center justify-between text-primary px-4 py-2.5 mb-6 font-medium border-grey border-b-1 w-full">
+      <button className="flex flex-row items-center justify-between text-primary px-4 py-2.5 mb-6 font-medium border-grey border-b w-full">
         <span>Personal Workspace</span>
         <ChevronDownIcon size={22} className="text-grey" />
       </button>
