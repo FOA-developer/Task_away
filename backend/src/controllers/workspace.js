@@ -111,6 +111,7 @@ const addMember = async(req, res) => {
   
 }
 
+
 const getCurrentWorkspace = async (req, res) => {
   try{
     const currentWorkspace = await Workspace.findById(req.user.currentWorkspace).populate("members")
@@ -126,10 +127,48 @@ const getCurrentWorkspace = async (req, res) => {
   }
 }
 
+const removeMember =  async(req, res) => {
+  try{
+    const user = await User.findById(req.params.userId)
+    if(!user){
+      return res.status(403).json({
+        message : "You must select a  valid user"
+      })
+    }
+
+    const workspace = await Workspace.findById(req.user.currentWorkspace)
+
+    const isMember = workspace.members.includes(user._id)
+    if(!isMember){
+      return res.status(403).json({
+        message: "Must be a member of the workspace"
+      })
+    }
+
+    if(workspace.owner.toString() !== req.user._id.toString()){
+      return res.status(403).json({
+        message: "Must be the owner of a workspace to remove a user"
+      })
+    }
+
+    const removed = await Workspace.findByIdAndUpdate( req.user.currentWorkspace, { $pull : {members : user._id} },{ new: true })
+     return res.status(200).json({
+      message: "user removed from workspace",
+      members : removed.members
+     })
+
+  }catch(err){
+    return res.status(500).json({
+      message : `Internal server error ${err}`
+    })
+  }
+}
+
 export {
   createWorkspace,
   switchWorkspace,
   getWorkspace,
   addMember,
-  getCurrentWorkspace
+  getCurrentWorkspace,
+  removeMember
 }
