@@ -1,7 +1,8 @@
 import { X, AlignLeft, Calendar, Clock , Trash2 } from "lucide-react";
-import Button from "../shared/Button.jsx"
+import Button from "../shared/Button.jsx";
 
-const TaskScreen= ({ task, onClose, onEdit }) => {
+
+const TaskScreen= ({ task, onClose, onEdit , onDelete}) => {
   if (!task) return null;
 
   const statusColors = {
@@ -9,7 +10,7 @@ const TaskScreen= ({ task, onClose, onEdit }) => {
     inProgress : "bg-progress",
     completed : "bg-done"
   }
-
+  
   const dateColors ={
     pending : "bg-[#F6E4DC]",
     inProgress : "bg-[#D0DCE8]",
@@ -69,7 +70,10 @@ const TaskScreen= ({ task, onClose, onEdit }) => {
               <div className={`${dateColor} px-2 rounded-xl md:text-sm text-xs flex items-center py-1 justify-center`}>{initials}</div>
               <h4 className="text-xs md:text-sm  text-primary">{task.assignedTo.name}</h4>
             </div>
-            <Trash2 size={18} className="text-primary mt-6"/>
+            <Trash2 size={18} className="text-primary mt-6" onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}/>
           </div>
          <div className="flex flex-row py-4 gap-2 items-center">
            <AlignLeft size={18} className="text-grey/90"/>
@@ -81,7 +85,7 @@ const TaskScreen= ({ task, onClose, onEdit }) => {
             blocks.map((block) => {
               const Icon = block.icon
               return (
-                <div className={`flex flex-col p-3 ${block.bg} rounded-xl`}>
+                <div className={`flex flex-col p-3 ${block.bg} rounded-xl`} key={block.title}>
                  <div className="flex flex-row items-center gap-3">
                     <Icon size={12} className="text-grey"/>
                     <h4 className="capitalize text-grey text-xs">{block.title}</h4>
