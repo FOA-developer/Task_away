@@ -3,7 +3,6 @@ import Sidebar from "./Sidebar";
 import {
   LayoutDashboardIcon,
   Calendar1Icon,
-  ClipboardCheckIcon,
   Users2Icon,
   SettingsIcon,
   UserCircleIcon,
@@ -14,7 +13,6 @@ import NestlyLogo from "./NestlyLogo.jsx";
 const navLinks = [
   { name: "Dashboard", icon: LayoutDashboardIcon, path: "/dashboard"},
   { name: "Calendar", icon: Calendar1Icon, path: "/calendar" },
-  { name: "Tasks", icon: ClipboardCheckIcon, path: "/tasks" },
   { name: "Teams", icon: Users2Icon, path: "/teams" },
   { name: "Profile", icon: UserCircleIcon, path: "/settings"},
 ];

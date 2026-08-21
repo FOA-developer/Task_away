@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom"
-import { LayoutDashboardIcon, Calendar1Icon, ClipboardCheckIcon, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
+import { LayoutDashboardIcon, Calendar1Icon, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
 import NestlyLogo from "./NestlyLogo.jsx";
 
 
 const links = [
   { name: "Dashboard", icon: LayoutDashboardIcon, path: "/dashboard" },
   { name: "Calendar", icon: Calendar1Icon, path: "/calendar" },
-  { name: "Tasks", icon: ClipboardCheckIcon, path: "/tasks" },
   { name: "Teams", icon: Users2Icon, path: "/teams"},
   { name: "Settings", icon: SettingsIcon, path: "/settings" },
 ];
