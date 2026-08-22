@@ -11,7 +11,10 @@ const Settings = () => {
   }
   return (
     <Layout>
-      <Block onLogout={() => {logoutUser()}}>Logout</Block>
+      <div className="flex flex-col gap-3">
+        <h3 className="text-2xl md:font-3xl font-semibold text-primary font-playfair">Settings</h3>
+        <Block onLogout={() => {logoutUser()}}>Logout</Block>
+      </div>
     </Layout>
   )
 }
