@@ -19,6 +19,7 @@ const Dashoard = () => {
   const [isAddingTask, setIsAddingTask] = useState(false)
   const [message, setMessage] = useState("")
   const [deleteTaskId, setDeleteTaskId] = useState(null)
+  const [networkError, setNetworkError] = useState(false)
 
   const fetchTasks = async () => {
     try{
@@ -27,6 +28,9 @@ const Dashoard = () => {
       console.log(res.data)
     }
     catch(err){
+      if (!err.response) {
+        setNetworkError(true)
+      }
       console.log(err)
     }
     finally{
@@ -66,6 +70,9 @@ const Dashoard = () => {
       setTasks(updatedTask)
     }
     catch(err){
+      if (!err.response) {
+        setNetworkError(true)
+      }
       console.log(err)
     }
   }
@@ -116,7 +123,8 @@ const Dashoard = () => {
         members={members} 
       />
     )}
-    {message && <p>{message}</p>}
+    {message && <p className="text-xs md: text-sm font-primary">{message}</p>}
+    { networkError && (<p className="text-sm md:text-base font-primary">Network Error.... Pls check your internet connectionn</p>)}
     </Layout>
    );
 }
