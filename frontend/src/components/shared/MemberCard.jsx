@@ -5,13 +5,14 @@ import api from "../../api/api.js";
 import { useState } from 'react'; 
 
 
-const MemberCard = ({member}) => {
+const MemberCard = ({member, onSuccess}) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  const removeMember = async(member) => {
+  const removeMember = async(memberId) => {
     try{
-      await api.delete(`/workspace/delete_member/${member._id}`)
+      await api.delete(`/workspace/delete_member/${memberId}`)
       setIsOpen(false)
+      onSuccess()
     }
     catch(err){
       console.log(err)
