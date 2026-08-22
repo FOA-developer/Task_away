@@ -12,6 +12,7 @@ import TaskForm from "../../components/shared/TaskForm.jsx";
 const Dashoard = () => {
   const today = new Date();
   const [editingTask, setEditingTask] = useState(null)
+  const [currentWorkspace, setCurrentWorkspace] = useState("")     
   const [ tasks, setTasks ] = useState([])
   const [loading, setLoading ] = useState(true)
   const [selectedTask, setSelectedTask] = useState(null)
@@ -44,6 +45,7 @@ const Dashoard = () => {
         try{
           const res = await  api.get("/workspace/get_currentWorkspace")
           setMembers(res.data.workspace.members)
+          setCurrentWorkspace(res.data.workspace.name)
           console.log(res.data.workspace.members)
         }
         catch(err){
@@ -84,7 +86,7 @@ const Dashoard = () => {
       <div className="flex flex-col">
         <div className="flex flex-row justify-between items-center">
           <div>
-            <h1 className="text-2xl md:font-3xl font-semibold text-primary font-playfair">Personal Workspace</h1>
+            <h1 className="text-2xl md:font-3xl font-semibold text-primary font-playfair">{currentWorkspace}</h1>
             <p className="font-primary">{today.toLocaleDateString()}</p>
           </div>
           <Button className="flex flex-row items-center gap-2" size="small" onClick={() => {
