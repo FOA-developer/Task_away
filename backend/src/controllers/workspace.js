@@ -87,7 +87,7 @@ const addMember = async(req, res) => {
     const member = await User.findOne({ email : userEmail})
     if(!member){
       return res.status(403).json({
-        message : "Must  be a register user"
+        message : "Must  be a registered user"
       })
     }
     const alreadyAMember = workspace.members.includes(member._id)
