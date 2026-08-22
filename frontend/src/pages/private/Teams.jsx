@@ -1,5 +1,5 @@
 import Layout from "../../components/shared/Layout.jsx"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api.js";
 import { Plus } from "lucide-react";
 import Button from "../../components/shared/Button.jsx";
@@ -31,6 +31,9 @@ const Teams = () => {
     }
   }
   
+  useEffect((() => {
+    getMembers()
+  }),[])
 
   return (  
     <Layout>
