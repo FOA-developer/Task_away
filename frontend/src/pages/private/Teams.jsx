@@ -50,7 +50,7 @@ const Teams = () => {
           {loading ? ([1, 2, 3, 4].map((num) => ( <Skeleton key={num} /> )))
             : members.map((member) => {
               return (
-                <MemberCard key={member._id} member={member}/>
+                <MemberCard key={member._id} member={member} onSuccess={getMembers}/>
               )})}
         </div>
         {isAddingMemeber && (
