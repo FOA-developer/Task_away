@@ -6,6 +6,8 @@ import Button from "../shared/Button.jsx"
 
 const TaskForm = ({task, onClose, onSuccess, members}) => {
   const[formError, setFormError] = useState("")
+  const [networkError, setNetworkError] = useState(false)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,6 +28,9 @@ const TaskForm = ({task, onClose, onSuccess, members}) => {
       } 
       onClose();    
     } catch (err) {
+      if (!err.response) {
+        setNetworkError(true)
+      }
       console.log(err)
     }
   }
@@ -106,6 +111,7 @@ const TaskForm = ({task, onClose, onSuccess, members}) => {
           <div className="flex justify-center items-center" >
            <Button size="small" className="mt-10 mb-6" >Save</Button>
           </div>
+          { networkError && (<p className="text-sm md:text-base font-primary">Network Error.... Pls check your internet connectionn</p>)}
         </form>
       </div>
     </div>
