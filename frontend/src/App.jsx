@@ -5,7 +5,6 @@ import LandingPage from './pages/public/LandingPage'
 import Calendar from './pages/private/Calendar'
 import Settings from './pages/private/Settings'
 import Dashboard from './pages/private/Dashboard'
-import Tasks from './pages/private/Tasks'
 import Teams from './pages/private/Teams'
 import ProtectedRoute from './components/shared/ProtectedRoute'
 
