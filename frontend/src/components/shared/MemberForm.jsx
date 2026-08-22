@@ -51,7 +51,7 @@ const MemberForm = ({onClose, onSuccess}) => {
               className="border-b border-grey focus:outline-none focus:border-primary text-xs md:text-sm p-2"
               />
           </div>
-          { formError && <p className="text-red/80 p-4 text-xs">{formError}</p>}
+          { formError && <p className="text-red-500 p-4 text-xs">{formError}</p>}
           <Button size="small" className="ml-22 mt-4">Add</Button>
         </form>
       </div>
