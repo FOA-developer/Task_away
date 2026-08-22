@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"
-import { LayoutDashboardIcon, Calendar1Icon, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
+import { LayoutDashboardIcon, Calendar1Icon, X, Plus, Users2Icon, SettingsIcon, ChevronDownIcon } from "lucide-react";
 import NestlyLogo from "./NestlyLogo.jsx";
+import api from "../../api/api.js";
+import WorkspaceForm from "../shared/WorkspaceForm.jsx";
 
 
 const links = [
@@ -12,9 +14,52 @@ const links = [
 ];
 
 const Sidebar = ({ className }) => {
-  const [active, setActive] = useState("/dashboard");
+  const [openDropdown, setOpenDropDown] = useState(false)
   const navigate = useNavigate()
   const location =  useLocation()
+  const [currentWorkspace, setCurrentWorkspace] = useState(null)
+  const [workspace, setWorkspace] = useState([])
+  const [creatingWorkspace, setCreatingWorkspace] = useState(false)
+  
+  const getWorkspace = async () => {
+    try{
+      const res = await api.get("/workspace/get_workspace");
+      setWorkspace(res.data.workspace)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const handleSwitch = async (workspaceId) => {
+    try{
+       await api.patch("/workspace/switch_workspace", { newWorkspace : workspaceId})
+       if(location.pathname !== "/dashboard"){
+        navigate("/dashboard")
+       }else{
+        window.location.reload()
+       }
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  const getCurrentWorkspace = async () => {
+    try{
+      const res =  await api.get("/workspace/get_currentWorkspace");
+      setCurrentWorkspace(res.data.workspace.name)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getWorkspace();
+    getCurrentWorkspace();
+  },[])
+
+  
 
   return (
     <div className={`${className} bg-whiter flex flex-col h-full py-6 px-4 font-dmsans border-grey border-r`}>
@@ -27,10 +72,41 @@ const Sidebar = ({ className }) => {
       <hr className="border-grey mb-5" />
 
       {/* Workspace dropdown */}
-      <button className="flex flex-row items-center justify-between text-primary px-4 py-2.5 mb-6 font-medium border-grey border-b w-full">
-        <span>Personal Workspace</span>
-        <ChevronDownIcon size={22} className="text-grey" />
-      </button>
+      <div className="relative">
+        <button className="flex flex-row items-center justify-between text-primary px-4 py-2.5 mb-4 font-medium border-grey border-b w-full " onClick={() => setOpenDropDown(true)}>
+          <span className="capitalize">{currentWorkspace}</span>
+          { !openDropdown ? (<ChevronDownIcon size={22} className="text-primary"/>) 
+            : (<X size={22} className="text-primary" onClick={(e) => {
+              e.stopPropagation()
+              setOpenDropDown(false)}}
+          />)}
+        </button>
+
+        {openDropdown && (
+              <div className="absolute left-0 right-0 top-full bg-white rounded-lg shadow-md z-10 py-1">
+                {workspace.map((space,index) => {
+                  return (
+                    <button className="block w-full text-left pl-8 pr-4 py-2 text-sm text-primary hover:bg-grey/20"
+                      onClick={() => {handleSwitch(space._id)
+                                      setOpenDropDown(false)
+                                      getCurrentWorkspace()
+                      }}
+                      key={index}>
+                      {space.name}
+                    </button>
+                  )
+                })}
+                <button className="flex flex-row gap-2 items-center w-full text-left px-4 py-2 text-sm text-primary hover:bg-grey/20" onClick={() => {setCreatingWorkspace(true); setOpenDropDown(false)}}>
+                  <Plus size={20} />
+                  <span>Create Workspace</span>
+                </button>
+              </div>
+        )}
+      </div>
+      {creatingWorkspace && (
+                  <WorkspaceForm onClose={() => setCreatingWorkspace(false)}
+                   onSuccess={() => {getWorkspace()}}
+      />)}
 
       {/* Nav links */}
       <nav className="flex flex-col gap-1 flex-1">
