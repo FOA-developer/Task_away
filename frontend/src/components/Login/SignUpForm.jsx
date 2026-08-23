@@ -5,8 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-
-
 const SignUpForm = () => {
 
   const navigate = useNavigate();
