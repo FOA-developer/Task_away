@@ -1,8 +1,13 @@
 import { X, Plus } from "lucide-react";
+import WorkspaceForm from "./WorkspaceForm.jsx";
+import { useState } from "react";
 
-const Switcher = ({children, onClose}) => {
+
+const Switcher = ({children, onClose, onSuccess}) => {
+  const [isAddingWorkspace, setIsAddingWorkspace] = useState(false);
+  
+
   return( 
-
     <div 
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 flex items-end justify-center md:hidden"
       onClick={onClose}
@@ -24,10 +29,13 @@ const Switcher = ({children, onClose}) => {
           {children}
         </div>
         
-        <button className="flex items-center gap-1 mt-4 text-primary text-sm">
+        <button className="flex items-center gap-1 mt-4 text-primary text-sm" onClick={() => {setIsAddingWorkspace(true)}}>
           <Plus size={16} /> Create Workspace
         </button>
       </div>
+
+      {isAddingWorkspace && (<WorkspaceForm onClose={() => setIsAddingWorkspace(false)}
+                   onSuccess={() => onSuccess()}/>)}
     </div>
   )
 }
