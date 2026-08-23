@@ -3,7 +3,7 @@ import LoginForm from "../../components/Login/LoginForm";
 const LoginPage = () => {
   return ( 
     <div className="grid-background min-h-screen">
-      <div className="flex justify-center min-h-screen items-center relative z-10">
+      <div className="flex justify-center min-h-screen items-center relative z-10 px-4">
         <LoginForm />
       </div>
     </div>
