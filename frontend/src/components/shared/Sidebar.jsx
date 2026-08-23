@@ -19,6 +19,8 @@ const Sidebar = ({ className }) => {
   const location =  useLocation()
   const [currentWorkspace, setCurrentWorkspace] = useState(null)
   const [workspace, setWorkspace] = useState([])
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [creatingWorkspace, setCreatingWorkspace] = useState(false)
   
   const getWorkspace = async () => {
@@ -54,7 +56,20 @@ const Sidebar = ({ className }) => {
     }
   }
 
+
   useEffect(() => {
+
+    const getMe = async () => {
+      try {
+        const res = await api.get("/auth/get_user")
+        setUsername(res.data.user.name)
+        setEmail(res.data.user.email)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    getMe();
     getWorkspace();
     getCurrentWorkspace();
   },[])
@@ -140,8 +155,8 @@ const Sidebar = ({ className }) => {
           </svg>
         </div>
         <div>
-          <p className="font-semibold text-primary leading-tight">John Doe</p>
-          <p className="text-xs text-text-secondary">Admin</p>
+          <p className="font-semibold text-primary text-sm leading-tight">{username}</p>
+          <p className="text-grey text-xs">{email}</p>
         </div>
       </div>
     </div>
