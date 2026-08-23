@@ -8,15 +8,15 @@ import { Link } from "react-router-dom";
  const links = [
         { name:"Home",
           link: "#Home",
-        }, 
+        },
         {name:"How it Works",
           link: "#howitworks",
         },
         {name: "Features",
           link: "",
-        }, 
+        },
         { name: "Login",
-          link: "",
+          route: "/login",
         }
       ]
 
@@ -31,22 +31,29 @@ const Navbar = () => {
         <NestlyLogo />
         <h3 className="font-semibold text-lg">Nestly</h3>
       </div>
-      <div className="flex flex-row gap-10 justify-between pr-6">
+      <div className="flex flex-row items-center gap-6 md:gap-10 justify-between pr-2 md:pr-6">
         <ul className="hidden md:flex flex-row gap-5 align-middle pt-2">
           {links.map((link) => {
-            return <li className="font-semibold " key={link.name}><a href={link.link}>{link.name}</a></li>
+            return <li className="font-semibold " key={link.name}>
+              {link.route
+                ? <Link to={link.route}>{link.name}</Link>
+                : <a href={link.link}>{link.name}</a>}
+            </li>
           })}
         </ul>
-        <Button className="align-top" size="small"><Link to="/login">Get Started</Link></Button>
+        <Button className="hidden md:inline-block align-top" size="small"><Link to="/signup">Get Started</Link></Button>
+        <button className="flex md:hidden items-center text-2xl" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <MdClose/> : <GiHamburgerMenu/>}
+        </button>
       </div>
-      <button className="flex md:hidden" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <GiHamburgerMenu/> : <MdClose/>}
-      </button>
       {isOpen && (
-          <div className="absolute top-14 right-0 w-full rounded-lg flex flex-col items-center gap-6 py-8 z-50">
+          <div className="absolute top-16 left-0 w-full bg-primary shadow-lg rounded-b-lg flex flex-col items-center gap-6 py-8 z-50 md:hidden">
             {links.map((link) => {
-              return <a href={link.link} key={link.name} onClick={() => setIsOpen(false)} className="text-white hover:text-[#FE4E02] transition duration-300">{link.name}</a>
+              return link.route
+                ? <Link to={link.route} key={link.name} onClick={() => setIsOpen(false)} className="text-white hover:text-[#FE4E02] transition duration-300">{link.name}</Link>
+                : <a href={link.link} key={link.name} onClick={() => setIsOpen(false)} className="text-white hover:text-[#FE4E02] transition duration-300">{link.name}</a>
             })}
+            <Button size="small"><Link to="/signup" onClick={() => setIsOpen(false)}>Get Started</Link></Button>
           </div>
         )}
     </navbar>

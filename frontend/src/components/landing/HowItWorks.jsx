@@ -21,13 +21,13 @@ const HowItWorks = () => {
   return ( 
     <div className="plain-background ">
       <section className="relative z-10" id="howitworks">
-        <div className="flex flex-col justify-between items-center">
-          <h2 className="text-5xl font-playfair font-semibold text-primary">Built for the way you actually work</h2>
+        <div className="flex flex-col justify-between items-center px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-semibold text-primary text-center">Built for the way you actually work</h2>
           <div className="w-15 h-1 bg-mellow rounded-xl mt-5"></div>
-          <div className="grid grid-cols-3 py-8 px-10 mt-15 gap-7 text-primary">
+          <div className="grid grid-cols-1 md:grid-cols-3 py-8 px-2 sm:px-10 mt-10 md:mt-15 gap-7 text-primary">
             {cards.map((card) =>{
               const Icon = card.icon
-               return <div className="flex flex-col min-w-[290px] px-6 py-5 bg-white rounded-2xl border-1 border-secondary" key={card.header}> 
+               return <div className="flex flex-col w-full sm:min-w-[290px] px-6 py-5 bg-white rounded-2xl border-1 border-secondary" key={card.header}>
                         <div className="pt-6">
                           <Icon className="" size={32}></Icon>
                         </div>
