@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const Footer = () => {
   return (
     <div className="bg-mellow">
-      <div className="grid grid-cols-1 md:grid-cols-2 px-5 gap-6 py-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 px-6 gap-6 py-6">
         <div className="flex flex-col gap-3 items-start md:pl-10 pl-0">
           <div className="flex flex-row items-center gap-3">
             <NestlyLogo />
