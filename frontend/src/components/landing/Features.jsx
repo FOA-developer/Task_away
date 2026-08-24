@@ -35,7 +35,7 @@ const Features = () => {
   ]
 
   return (
-    <div className="bg-mellow">
+    <div className="bg-[#FAF8F2]">
       <section id="features" className="pt-32 pb-8">
         <div className="flex  flex-col justify-between gap-3 items-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-semibold text-primary text-center">Everything you need, nothing you don't</h2>
