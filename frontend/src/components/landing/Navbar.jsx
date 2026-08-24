@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
           link: "#howitworks",
         },
         {name: "Features",
-          link: "",
+          link: "#features",
         },
         { name: "Login",
           route: "/login",
