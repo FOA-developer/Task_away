@@ -27,7 +27,7 @@ const HowItWorks = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 py-8 px-2 sm:px-10 mt-10 md:mt-15 gap-7 text-primary">
             {cards.map((card) =>{
               const Icon = card.icon
-               return <div className="flex flex-col w-full sm:min-w-[290px] px-6 py-5 bg-white rounded-2xl border-1 border-secondary" key={card.header}>
+               return <div className="flex flex-col w-full sm:min-w-72.5 px-6 pt-5 pb-10 bg-white rounded-2xl border border-secondary" key={card.header}>
                         <div className="pt-6">
                           <Icon className="" size={32}></Icon>
                         </div>
