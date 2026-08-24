@@ -27,12 +27,12 @@ const HowItWorks = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 py-8 px-2 sm:px-10 mt-10 md:mt-15 gap-7 text-primary">
             {cards.map((card) =>{
               const Icon = card.icon
-               return <div className="flex flex-col w-full sm:min-w-72.5 px-6 pt-5 pb-10 bg-primary rounded-2xl border border-secondary" key={card.header}>
+               return <div className="flex flex-col w-full sm:min-w-72.5 px-6 pt-5 pb-10 bg-[#FDFBF7] rounded-2xl border border-secondary" key={card.header}>
                         <div className="pt-6">
                           <Icon className="text-grey" size={32}></Icon>
                         </div>
-                        <h3 className="font-playfair text-white pt-3 text-lg font-semibold pr-2">{card.header}</h3>
-                        <p className="pt-3 text-sm text-white pb-4">{card.body}</p>
+                        <h3 className="font-playfair text-primary pt-3 text-lg font-semibold pr-2">{card.header}</h3>
+                        <p className="pt-3 text-sm text-primary pb-4">{card.body}</p>
                       </div>
             })}
           </div>

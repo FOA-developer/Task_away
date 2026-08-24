@@ -11,13 +11,13 @@ const Footer = () => {
             <NestlyLogo />
             <h2 className="font-playfair text-primary text-base md:text-lg">Nestly</h2>
           </div>
-          <p className="text-xs md:text-md text-grey">A mindful approach to task management.</p>
+          <p className="text-xs md:text-md text-primary hover:text-grey">A mindful approach to task management.</p>
         </div>
         <div className="flex flex-col items-start gap-3">
           <h4 className="text-sm md:text-base font-playfair text-primary text-playfair">Quick Links</h4>
-          <p className="text-xs text-left hover:text-primary text-grey"><a href="#howitworks">How It Works</a></p>
-          <p className="text-xs text-left hover:text-primary text-grey"><a href="#features">Features</a></p>
-          <p className="text-xs text-left hover:text-primary text-grey"><Link to="/login">Login</Link></p>
+          <p className="text-xs text-left text-primary hover:text-grey"><a href="#howitworks">How It Works</a></p>
+          <p className="text-xs text-left text-primary hover:text-grey"><a href="#features">Features</a></p>
+          <p className="text-xs text-left text-primary hover:text-grey"><Link to="/login">Login</Link></p>
         </div>
       </div>
       <div className="w-[90%] m-auto h-px bg-grey"/>
