@@ -44,10 +44,10 @@ const Features = () => {
               boxes.map((box, index) => {
                 const Icon = box.icon
                 return (
-                <div key={index} className="shadow-md rounded-lg p-4 border border-secondary gap-2 flex flex-col bg-whiter"> 
+                <div key={index} className="shadow-md rounded-xl p-4 border border-secondary gap-2 flex flex-col bg-primary"> 
                   <Icon className="text-grey"/>
-                  <h3 className="md:text-base text-sm font-playfair text-primary">{box.title}</h3>
-                  <p className="text-xs md:text-sm text-primary/90 pb-2">{box.description}</p>
+                  <h3 className="md:text-base text-sm font-playfair text-white">{box.title}</h3>
+                  <p className="text-xs md:text-sm  text-white/90 pb-2">{box.description}</p>
                 </div>
                 )
               })
