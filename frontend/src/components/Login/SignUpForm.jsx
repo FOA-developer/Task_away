@@ -63,7 +63,7 @@ const SignUpForm = () => {
 
     setLoading(true);
     try{
-      const post = await axios.post('http://localhost:3000/api/auth/register', {email: formData.email, password: formData.password, name: formData.FullName, confirmPassword: formData.confirmPassword});
+      const post = await axios.post('https://task-away-7nk3.onrender.com/api/auth/register', {email: formData.email, password: formData.password, name: formData.FullName, confirmPassword: formData.confirmPassword});
       const handleResponse = post.data;
       console.log(handleResponse);
       navigate("/login")

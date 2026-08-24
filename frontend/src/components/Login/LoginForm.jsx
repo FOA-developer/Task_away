@@ -42,7 +42,7 @@ const LoginForm = () => {
     setError('');
     setLoading(true);
     try{
-      const post = await axios.post('http://localhost:3000/api/auth/login', {email: formData.email, password: formData.password});
+      const post = await axios.post('https://task-away-7nk3.onrender.com/api/auth/login', {email: formData.email, password: formData.password});
       const handleResponse = post.data;
       const token = handleResponse.token;
       localStorage.setItem("token", token);
