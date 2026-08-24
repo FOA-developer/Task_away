@@ -35,7 +35,7 @@ const Features = () => {
   ]
 
   return (
-    <div className="bg-whiter">
+    <div className="bg-mellow">
       <section id="features" className="pt-32 pb-8">
         <div className="flex  flex-col justify-between gap-3 items-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-semibold text-primary text-center">Everything you need, nothing you don't</h2>
@@ -44,7 +44,7 @@ const Features = () => {
               boxes.map((box, index) => {
                 const Icon = box.icon
                 return (
-                <div key={index} className="shadow-md rounded-lg p-4 gap-2 flex flex-col bg-whiter"> 
+                <div key={index} className="shadow-md rounded-lg p-4 border border-secondary gap-2 flex flex-col bg-whiter"> 
                   <Icon className="text-grey"/>
                   <h3 className="md:text-base text-sm font-playfair text-primary">{box.title}</h3>
                   <p className="text-xs md:text-sm text-primary/90 pb-2">{box.description}</p>
