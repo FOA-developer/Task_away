@@ -36,7 +36,7 @@ const registerUser = async (req , res) => {
     })
 
     const workspace = await Workspace.create({
-      name: `${user.name}'s workspace`,
+      name: user.name,
       owner: user._id,
       members: [user._id]
     })
