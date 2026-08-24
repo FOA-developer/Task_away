@@ -12,7 +12,7 @@ A full-stack task management web application built with the MERN stack. Nestly a
 - **Task Management** : Create, edit, and delete tasks within workspaces
 - **Task Assignment** : Assign tasks to workspace members
 - **Task Status** : Track tasks as pending, in progress, or completed
-- **Calendar View** ":  Visualize and track tasks by due date
+- **Calendar View** :  Visualize and track tasks by due date
 - **Protected Routes** :  Private pages accessible only to authenticated users
 
 ## Tech Stack
@@ -30,6 +30,6 @@ A full-stack task management web application built with the MERN stack. Nestly a
 - MongoDB with Mongoose
 - JSON Web Tokens (JWT)
 - bcryptjs
-- Deployed on **Render*
+- Deployed on **Render**
 
 AI was my guide when building this project, this project is an opening for me to build my first fully functional CRUD web app
