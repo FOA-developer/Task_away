@@ -32,4 +32,5 @@ A full-stack task management web application built with the MERN stack. Nestly a
 - bcryptjs
 - Deployed on **Render**
 
-AI was my guide when building this project, this project is an opening for me to build my first fully functional CRUD web app
+AI was used when building the layout, signup and login form. It was used to implement the design.
+This project was an opening for me to build my first fully functional CRUD web app.
